@@ -4,7 +4,8 @@ class ErrorHandler extends Error {
     this.statusCode = statusCode;
   }
 }
-module.exports.ErrorHandler = (err, req, res, next) => {
+
+const ErrorMiddleware = (err, req, res, next) => {
   err.message = err.message || "Internal Server Error";
   err.statusCode = err.statusCode || 500;
   if (err.code == 11000) {
@@ -28,4 +29,8 @@ module.exports.ErrorHandler = (err, req, res, next) => {
     success: false,
     message: errorMessage,
   });
+};
+module.exports = {
+  ErrorHandler,
+  ErrorMiddleware,
 };

@@ -7,7 +7,7 @@ const fileUpload = require("express-fileupload");
 const router = require("./router");
 const cookieParser = require("cookie-parser");
 const { createTable } = require("./utils/createTable");
-const { ErrorHandler } = require("./middlewares/errorMiddleware");
+const { ErrorMiddleware } = require("./middlewares/errorMiddleware");
 const cloudinary = require("cloudinary").v2;
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLIENT_NAME,
@@ -28,7 +28,7 @@ app.use(fileUpload({ tempFileDir: "./uploads", useTempFiles: true }));
 
 router(app);
 createTable();
-app.use(ErrorHandler);
+app.use(ErrorMiddleware);
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
 });
