@@ -10,7 +10,7 @@ module.exports.createShippingInfoTable = async () => {
         district varchar(100) not null,
         ward varchar(100) not null,
         address varchar(255) not null,
-        state varchar(100) not null,
+        
         phone varchar(10) not null,
         created_at timestamptz default now(),
         foreign key (order_id) references orders(id) on delete cascade
